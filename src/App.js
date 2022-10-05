@@ -1,10 +1,9 @@
 import React from "react"
-import ReactMarkdown from "react-markdown"
+import {marked} from "marked"
 
 export default function App() {
-
-  const [ input,setInput ] = React.useState(`# Welcome to my React Markdown Previewer!
-
+  const placeholder = `
+  # Welcome to my React Markdown Previewer!
   ## This is a sub-heading...
   ### And here's some other cool stuff:
   
@@ -46,7 +45,8 @@ export default function App() {
   1. And last but not least, let's not forget embedded images:
   
   ![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)
-  `)
+  `
+  const [ input,setInput ] = React.useState(placeholder)
 
   function handleChange(event) {
     setInput(event.target.value)
@@ -58,9 +58,10 @@ export default function App() {
         <h3 className="editor-title">Editor</h3>
         <textarea id='editor' onChange={handleChange}/>
       </div>
-      <div id="preview" className="box">
+      <div className="box">
         <h3 className="previewer">Previewer</h3>
-        <ReactMarkdown children={input} />
+        <div id="preview" dangerouslySetInnerHTML={{__html: marked(input)}}>
+        </div>
       </div>
     </div>
   );
