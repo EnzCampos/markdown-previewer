@@ -56,7 +56,7 @@ export default function App() {
     <div className="main-content">
       <div className="editor">
         <h3 className="editor-title">Editor</h3>
-        <textarea id='editor' onChange={handleChange}/>
+        <textarea id='editor' onChange={handleChange} value={input}/>
       </div>
       <div className="box">
         <h3 className="previewer">Previewer</h3>
